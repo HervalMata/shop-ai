@@ -45,7 +45,7 @@ const couponSchema = new mongoose.Schema(
             required: true,
             validate: {
                 validator: function(value) {
-                    if (this.discount_typen === 'percentage') {
+                    if (this.discount_type === 'percentage') {
                         return value >= 0 && value <= 100;
                     }
                     return value >= 0;

@@ -32,4 +32,4 @@ const orderPlaceNotificationSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.models.OrderPlaceNotificationSchema || mongoose.model("OrderPlaceNotification", orderPlaceNotificationSchema);
+export default mongoose.models.OrderPlaceNotification || mongoose.model("OrderPlaceNotification", orderPlaceNotificationSchema);

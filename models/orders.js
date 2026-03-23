@@ -27,15 +27,15 @@ const orderSchema = new mongoose.Schema(
         },
         subtotal: {
             type: Number,
-            drequired: true,
+            required: true,
         },
         grand_total: {
             type: Number,
-            drequired: true,
+            required: true,
         },
         product_qty: {
             type: Number,
-            drequired: true,
+            required: true,
         },
         payment_method: {
             type: String,

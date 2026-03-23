@@ -36,4 +36,4 @@ const sliderSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.models(Slider) || mongoose.model("Slider", sliderSchema);
+export default mongoose.models.Slider || mongoose.model("Slider", sliderSchema);

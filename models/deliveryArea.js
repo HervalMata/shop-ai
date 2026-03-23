@@ -28,5 +28,5 @@ const deliveryAreaSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.models.DeliverArea || 
+export default mongoose.models.DeliveryArea || 
         mongoose.model("DeliveryArea", deliveryAreaSchema);

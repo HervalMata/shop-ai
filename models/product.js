@@ -29,9 +29,17 @@ const productSchema = new mongoose.Schema(
         price: {
             type: Number,
             required: true,
+            min: 0,
         },
         offer_price: {
             type: Number,
+            min: 0,
+            validate: {
+                validator(value) {
+                    return value == null || value <= this.price;
+                },
+                message: "O preço de oferta deve ser menor que o preço original"
+            }
         },
         sku: {
             type: String,
