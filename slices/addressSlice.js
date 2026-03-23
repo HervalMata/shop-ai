@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single address by Id
-export const fetchAddressById = createAsayncThunk(
+export const fetchAddressById = createAsyncThunk(
     "addresses/fetchAddressById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchAddressById = createAsayncThunk(
 );
 
 //Fetch all addresses
-export const fetchAddress = createAsayncThunk(
+export const fetchAddress = createAsyncThunk(
     "addresses/fetchAddress",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchAddress = createAsayncThunk(
 );
 
 //create new address
-export const createAddress = createAsayncThunk(
+export const createAddress = createAsyncThunk(
     "addresses/createAddress",
     async (addressData) => {
         try {
@@ -60,7 +60,7 @@ export const createAddress = createAsayncThunk(
 );
 
 //update existing address
-export const updateAddress = createAsayncThunk(
+export const updateAddress = createAsyncThunk(
     "addresses/updateAddress",
     async ({id, addressData}) => {
         try {
@@ -83,7 +83,7 @@ export const updateAddress = createAsayncThunk(
 );
 
 //delete existing address
-export const deleteAddress = createAsayncThunk(
+export const deleteAddress = createAsyncThunk(
     "addresses/deleteAddress",
     async (id) => {
         try {
@@ -123,7 +123,7 @@ const addressSlice = createSlice({
             })
             .addCase(createAddress.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchAddress.pending, (state) => {
                 state.loading = true;
