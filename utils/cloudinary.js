@@ -1,6 +1,6 @@
 export const uploadImageToCloudinary = async (imageFile) => {
     const formData = new FormData();
-    formData.append(file, imageFile);
+    formData.append('file', imageFile);
     formData.append('upload_preset', "ml_default");
 
     try {
@@ -20,7 +20,7 @@ export const uploadImageToCloudinary = async (imageFile) => {
 
         return data.secure_url;
     } catch (error) {
-        conssole.error('Erro no carregamento para o cloudinary');
+        console.error('Erro no carregamento para o cloudinary');
         throw error;
     }
 };
@@ -40,7 +40,7 @@ export const handleImageChange = (event, setImageFile, setImagePreview) => {
     setImageFile(file);
 
     const reader = new FileReader();
-    render.onLoadEnd = () => {
+    reader.onloadend = () => {
         setImagePreview(reader.result);
     };
     reader.readAsDataURL(file);

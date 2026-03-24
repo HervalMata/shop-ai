@@ -29,7 +29,7 @@ export const useImageUpload = (initialImage = '') => {
 
         try {
             const imageUrl = await uploadImageToCloudinary(imageFile);
-            return imageFile;
+            return imageUrl;
         } catch (error) {
             setUploadError(error.message || 'Falha ao carregar imagem');
             return null;

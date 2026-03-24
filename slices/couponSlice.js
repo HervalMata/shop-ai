@@ -121,7 +121,7 @@ export const deleteCoupon = createAsyncThunk(
 );
 
 // Validate coupon code
-export const validateCoupon = createAsayncThunk(
+export const validateCoupon = createAsyncThunk(
     "coupons/validateCoupon",
     async (code) => {
         try {

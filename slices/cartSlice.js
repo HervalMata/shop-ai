@@ -3,19 +3,19 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-//Add To Cart 
+//Add To Cart
 export const addToCart = createAsyncThunk(
     "cart/addToCart",
     async (payload, { dispatch }) => {
         try {
-            const response = await fetch(`${process.env.API}/auser/add-to-cart`, {
+            const response = await fetch(`${process.env.API}/user/add-to-cart`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(`Falha ao adicionar para o carrinho: ` || data.error);
+                throw new Error(data.error || `Falha ao adicionar para o carrinho: `);
             }
             toast.success("Item adicionado para carrinho com sucesso!");
             dispatch(fetchCart());
