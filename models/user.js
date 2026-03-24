@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
+            select: false,
         },
         role: {
             type: String,
@@ -34,7 +35,7 @@ const userSchema = new mongoose.Schema(
             data: String,
             expiresAt: {
                 type: Date,
-                default: () => new Date.now() + 10 * 60 * 1000,
+                default: () => new Date.now(Date.now() + 10 * 60 * 1000),
             },
         },
     },

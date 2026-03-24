@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import User from "./user";
-import Order from "./orders";
+import Orders from "./orders";
 import Product from "./product";
 
 const productRatingSchema = new mongoose.Schema(
@@ -17,7 +17,7 @@ const productRatingSchema = new mongoose.Schema(
         },
         order_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Order",
+            ref: "Orders",
             required: true,
         },
         rating: {
