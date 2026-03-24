@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single Slider by Id
-export const fetchSliderById = createAsayncThunk(
+export const fetchSliderById = createAsyncThunk(
     "sliders/fetchSliderById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchSliderById = createAsayncThunk(
 );
 
 //Fetch all Sliders (admin)
-export const fetchSliders = createAsayncThunk(
+export const fetchSliders = createAsyncThunk(
     "sliders/fetchSliders",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchSliders = createAsayncThunk(
 );
 
 //Fetch Sliders for home page
-export const fetchHomeSliders = createAsayncThunk(
+export const fetchHomeSliders = createAsyncThunk(
     "sliders/fetchHomeSliders",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchHomeSliders = createAsayncThunk(
 );
 
 //create new Slider
-export const createSlider = createAsayncThunk(
+export const createSlider = createAsyncThunk(
     "sliders/createSlider",
     async (sliderData) => {
         try {
@@ -77,7 +77,7 @@ export const createSlider = createAsayncThunk(
 );
 
 //update existing Slider
-export const updateSlider = createAsayncThunk(
+export const updateSlider = createAsyncThunk(
     "sliders/updateSlider",
     async ({id, sliderData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateSlider = createAsayncThunk(
 );
 
 //delete existing Slider
-export const deleteSlider = createAsayncThunk(
+export const deleteSlider = createAsyncThunk(
     "sliders/deleteSlider",
     async (id) => {
         try {
@@ -140,7 +140,7 @@ const sliderSlice = createSlice({
             })
             .addCase(createSlider.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchSliders.pending, (state) => {
                 state.loading = true;

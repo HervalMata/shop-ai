@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single Blog by Id
-export const fetchBlogById = createAsayncThunk(
+export const fetchBlogById = createAsyncThunk(
     "blogs/fetchBlogById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchBlogById = createAsayncThunk(
 );
 
 //Fetch all Blogs (admin)
-export const fetchBlogs = createAsayncThunk(
+export const fetchBlogs = createAsyncThunk(
     "blogs/fetchBlogs",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchBlogs = createAsayncThunk(
 );
 
 //Fetch Blogs for home page
-export const fetchHomeBlogs = createAsayncThunk(
+export const fetchHomeBlogs = createAsyncThunk(
     "blogs/fetchHomeBlogs",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchHomeBlogs = createAsayncThunk(
 );
 
 //create new Blog
-export const createBlog = createAsayncThunk(
+export const createBlog = createAsyncThunk(
     "blogs/createBlog",
     async (blogData) => {
         try {
@@ -77,7 +77,7 @@ export const createBlog = createAsayncThunk(
 );
 
 //update existing Blog
-export const updateBlog = createAsayncThunk(
+export const updateBlog = createAsyncThunk(
     "blogs/updateBlog",
     async ({id, blogData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateBlog = createAsayncThunk(
 );
 
 //delete existing Blog
-export const deleteBlog = createAsayncThunk(
+export const deleteBlog = createAsyncThunk(
     "blogs/deleteBlog",
     async (id) => {
         try {
@@ -141,7 +141,7 @@ const blogSlice = createSlice({
             })
             .addCase(createBlog.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchBlogs.pending, (state) => {
                 state.loading = true;

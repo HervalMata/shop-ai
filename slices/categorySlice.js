@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single Category by Id
-export const fetchCategoryById = createAsayncThunk(
+export const fetchCategoryById = createAsyncThunk(
     "categories/fetchCategoryById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchCategoryById = createAsayncThunk(
 );
 
 //Fetch all Categorys (admin)
-export const fetchCategories = createAsayncThunk(
+export const fetchCategories = createAsyncThunk(
     "categories/fetchCategories",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchCategories = createAsayncThunk(
 );
 
 //Fetch Categories for home page
-export const fetchHomeCategories = createAsayncThunk(
+export const fetchHomeCategories = createAsyncThunk(
     "categories/fetchHomeCategories",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchHomeCategories = createAsayncThunk(
 );
 
 //create new Category
-export const createCategory = createAsayncThunk(
+export const createCategory = createAsyncThunk(
     "categories/createCategory",
     async (categoryData) => {
         try {
@@ -77,7 +77,7 @@ export const createCategory = createAsayncThunk(
 );
 
 //update existing Category
-export const updateCategory = createAsayncThunk(
+export const updateCategory = createAsyncThunk(
     "categories/updateCategory",
     async ({id, categoryData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateCategory = createAsayncThunk(
 );
 
 //delete existing Category
-export const deleteCategory = createAsayncThunk(
+export const deleteCategory = createAsyncThunk(
     "categories/deleteCategory",
     async (id) => {
         try {
@@ -141,7 +141,7 @@ const categorySlice = createSlice({
             })
             .addCase(createCategory.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchCategories.pending, (state) => {
                 state.loading = true;

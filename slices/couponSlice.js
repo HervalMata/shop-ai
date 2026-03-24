@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single Coupon by Id
-export const fetchCouponById = createAsayncThunk(
+export const fetchCouponById = createAsyncThunk(
     "coupons/fetchCouponById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchCouponById = createAsayncThunk(
 );
 
 //Fetch all Coupons (admin)
-export const fetchCoupons = createAsayncThunk(
+export const fetchCoupons = createAsyncThunk(
     "coupons/fetchCoupons",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchCoupons = createAsayncThunk(
 );
 
 //Fetch Active Coupons for customers
-export const fetchActiveCoupons = createAsayncThunk(
+export const fetchActiveCoupons = createAsyncThunk(
     "coupons/fetchActiveCoupons",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchActiveCoupons = createAsayncThunk(
 );
 
 //create new Coupon
-export const createCoupon = createAsayncThunk(
+export const createCoupon = createAsyncThunk(
     "coupons/createCoupon",
     async (couponData) => {
         try {
@@ -77,7 +77,7 @@ export const createCoupon = createAsayncThunk(
 );
 
 //update existing Coupon
-export const updateCoupon = createAsayncThunk(
+export const updateCoupon = createAsyncThunk(
     "coupons/updateCoupon",
     async ({id, couponData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateCoupon = createAsayncThunk(
 );
 
 //delete existing Coupon
-export const deleteCoupon = createAsayncThunk(
+export const deleteCoupon = createAsyncThunk(
     "coupons/deleteCoupon",
     async (id) => {
         try {
@@ -152,7 +152,7 @@ const couponSlice = createSlice({
     },
     reducers: {
         clearValidatedCoupon: (state) => {
-            state.validateCoupon = null;
+            state.validatedCoupon = null;
         },
     },
     extraReducers: (builder) => {
@@ -167,7 +167,7 @@ const couponSlice = createSlice({
             })
             .addCase(createCoupon.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchCoupons.pending, (state) => {
                 state.loading = true;

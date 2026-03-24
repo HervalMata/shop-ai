@@ -1,10 +1,10 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 //Add To Cart 
-export const addToCart = createAsayncThunk(
+export const addToCart = createAsyncThunk(
     "cart/addToCart",
     async (payload, { dispatch }) => {
         try {
@@ -28,7 +28,7 @@ export const addToCart = createAsayncThunk(
 );
 
 // Fetch Cart
-export const fetchCart = createAsayncThunk("cart/fetchCart", async () => {
+export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
     try {
         const res = await fetch(`${process.env.API}/user/add-to-cart`);
         const data  = await res.json();
@@ -42,7 +42,7 @@ export const fetchCart = createAsayncThunk("cart/fetchCart", async () => {
 });
 
 //delete existing Cart
-export const removeFromCart = createAsayncThunk(
+export const removeFromCart = createAsyncThunk(
     "cart/removeFromCart",
     async (itemId, { dispatch }) => {
         try {

@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single Product by Id
-export const fetchProductById = createAsayncThunk(
+export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchProductById = createAsayncThunk(
 );
 
 //Fetch all Products (admin)
-export const fetchProducts = createAsayncThunk(
+export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchProducts = createAsayncThunk(
 );
 
 //Fetch Products for home page
-export const fetchHomeProducts = createAsayncThunk(
+export const fetchHomeProducts = createAsyncThunk(
     "products/fetchHomeProducts",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchHomeProducts = createAsayncThunk(
 );
 
 //create new Product
-export const createProduct = createAsayncThunk(
+export const createProduct = createAsyncThunk(
     "products/createProduct",
     async (productData) => {
         try {
@@ -77,7 +77,7 @@ export const createProduct = createAsayncThunk(
 );
 
 //update existing Product
-export const updateProduct = createAsayncThunk(
+export const updateProduct = createAsyncThunk(
     "products/updateProduct",
     async ({id, productData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateProduct = createAsayncThunk(
 );
 
 //delete existing Product
-export const deleteProduct = createAsayncThunk(
+export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (id) => {
         try {
@@ -141,7 +141,7 @@ const productSlice = createSlice({
             })
             .addCase(createProduct.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchProducts.pending, (state) => {
                 state.loading = true;

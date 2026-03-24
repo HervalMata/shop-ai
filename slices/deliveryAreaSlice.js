@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single DeliveryArea by Id
-export const fetchDeliveryAreaById = createAsayncThunk(
+export const fetchDeliveryAreaById = createAsyncThunk(
     "deliveryAreas/fetchDeliveryAreaById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchDeliveryAreaById = createAsayncThunk(
 );
 
 //Fetch all DeliveryAreas
-export const fetchDeliveryAreas = createAsayncThunk(
+export const fetchDeliveryAreas = createAsyncThunk(
     "deliveryAreas/fetchDeliveryAreas",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchDeliveryAreas = createAsayncThunk(
 );
 
 //create new DeliveryArea
-export const createDeliveryArea = createAsayncThunk(
+export const createDeliveryArea = createAsyncThunk(
     "deliveryAreas/createDeliveryArea",
     async (areaData) => {
         try {
@@ -60,7 +60,7 @@ export const createDeliveryArea = createAsayncThunk(
 );
 
 //update existing DeliveryArea
-export const updateDeliveryArea = createAsayncThunk(
+export const updateDeliveryArea = createAsyncThunk(
     "deliveryAreas/updateDeliveryArea",
     async ({id, areaData}) => {
         try {
@@ -83,7 +83,7 @@ export const updateDeliveryArea = createAsayncThunk(
 );
 
 //delete existing DeliveryArea
-export const deleteDeliveryArea = createAsayncThunk(
+export const deleteDeliveryArea = createAsyncThunk(
     "deliveryAreas/deleteDeliveryArea",
     async (id) => {
         try {
@@ -123,7 +123,7 @@ const deliveryAreaSlice = createSlice({
             })
             .addCase(createDeliveryArea.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchDeliveryAreas.pending, (state) => {
                 state.loading = true;

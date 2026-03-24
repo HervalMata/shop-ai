@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single Testimonial by Id
-export const fetchTestimonialById = createAsayncThunk(
+export const fetchTestimonialById = createAsyncThunk(
     "testimonials/fetchTestimonialById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchTestimonialById = createAsayncThunk(
 );
 
 //Fetch all Testimonials (admin)
-export const fetchTestimonials = createAsayncThunk(
+export const fetchTestimonials = createAsyncThunk(
     "testimonials/fetchTestimonials",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchTestimonials = createAsayncThunk(
 );
 
 //Fetch Testimonials for home page
-export const fetchHomeTestimonials = createAsayncThunk(
+export const fetchHomeTestimonials = createAsyncThunk(
     "testimonials/fetchHomeTestimonials",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchHomeTestimonials = createAsayncThunk(
 );
 
 //create new Testimonial
-export const createTestimonial = createAsayncThunk(
+export const createTestimonial = createAsyncThunk(
     "testimonials/createTestimonial",
     async (testimonialData) => {
         try {
@@ -77,7 +77,7 @@ export const createTestimonial = createAsayncThunk(
 );
 
 //update existing Testimonial
-export const updateTestimonial = createAsayncThunk(
+export const updateTestimonial = createAsyncThunk(
     "testimonials/updateTestimonial",
     async ({id, testimonialData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateTestimonial = createAsayncThunk(
 );
 
 //delete existing Testimonial
-export const deleteTestimonial = createAsayncThunk(
+export const deleteTestimonial = createAsyncThunk(
     "testimonials/deleteTestimonial",
     async (id) => {
         try {
@@ -141,7 +141,7 @@ const testimonialSlice = createSlice({
             })
             .addCase(createTestimonial.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchTestimonials.pending, (state) => {
                 state.loading = true;

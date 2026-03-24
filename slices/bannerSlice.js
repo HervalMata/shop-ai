@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch single banner by Id
-export const fetchBannerById = createAsayncThunk(
+export const fetchBannerById = createAsyncThunk(
     "banners/fetchBannerById",
     async (id) => {
         try {
@@ -20,7 +20,7 @@ export const fetchBannerById = createAsayncThunk(
 );
 
 //Fetch all banners (admin)
-export const fetchBanners = createAsayncThunk(
+export const fetchBanners = createAsyncThunk(
     "banners/fetchBanners",
     async () => {
         try {
@@ -37,7 +37,7 @@ export const fetchBanners = createAsayncThunk(
 );
 
 //Fetch banners for home page
-export const fetchHomeBanners = createAsayncThunk(
+export const fetchHomeBanners = createAsyncThunk(
     "banners/fetchHomeBanners",
     async () => {
         try {
@@ -54,7 +54,7 @@ export const fetchHomeBanners = createAsayncThunk(
 );
 
 //create new Banner
-export const createBanner = createAsayncThunk(
+export const createBanner = createAsyncThunk(
     "banners/createBanner",
     async (bannerData) => {
         try {
@@ -77,7 +77,7 @@ export const createBanner = createAsayncThunk(
 );
 
 //update existing Banner
-export const updateBanner = createAsayncThunk(
+export const updateBanner = createAsyncThunk(
     "banners/updateBanner",
     async ({id, bannerData}) => {
         try {
@@ -100,7 +100,7 @@ export const updateBanner = createAsayncThunk(
 );
 
 //delete existing Banner
-export const deleteBanner = createAsayncThunk(
+export const deleteBanner = createAsyncThunk(
     "banners/deleteBanner",
     async (id) => {
         try {
@@ -141,7 +141,7 @@ const bannerSlice = createSlice({
             })
             .addCase(createBanner.rejected, (state, action) => {
                 state.loading = false;
-                state.lerror = action.error.mesage;
+                state.error = action.error.mesage;
             })
             .addCase(fetchBanners.pending, (state) => {
                 state.loading = true;

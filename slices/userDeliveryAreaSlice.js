@@ -1,9 +1,9 @@
-import { createSlice, createAsayncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Fetch all DeliveryAreas
-export const fetchDeliveryAreas = createAsayncThunk(
+export const fetchDeliveryAreas = createAsyncThunk(
     "userDeliveryAreas/fetchDeliveryAreas",
     async () => {
         try {
@@ -21,7 +21,7 @@ export const fetchDeliveryAreas = createAsayncThunk(
 
 const userDeliveryAreasSlice = createSlice({
     name: "userDeliveryAreas",
-    iinitialState: {
+    initialState: {
         list: [],
         loading: false,
         error: null,
@@ -29,17 +29,17 @@ const userDeliveryAreasSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-        addCase(fetchDeliveryAreas.pending, (state) => {
+        .addCase(fetchDeliveryAreas.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
         .addCase(fetchDeliveryAreas.fulfilled, (state, action) => {
             state.loading = false;
-            state.list.push(action.payload);
+            state.list = action.payload;
         })
         .addCase(fetchDeliveryAreas.rejected, (state, action) => {
             state.loading = false;
-           state.lerror = action.error.mesage;
+           state.error = action.error.mesage;
         })
     },
 });
