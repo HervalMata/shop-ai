@@ -21,11 +21,11 @@ const ImageUpload = ({ imagePreview, setImagePreview, setImageFile }) => {
 
     return (
         <Box sx={{ mb: 3 }}>
-            <input 
+            <input
                 accept="image/*"
                 style={{ display: "none" }}
                 id="slider-image-upload"
-                tipe="file"
+                type="file"
                 onChange={handleImageChange}
             />
             <label htmlFor="slider-image-upload">
@@ -39,9 +39,10 @@ const ImageUpload = ({ imagePreview, setImagePreview, setImageFile }) => {
                             </Box>
                         )}
                     </Box>
+                </IconButton>
             </label>
         </Box>
     );
 };
 
-export default ImageUploader;
+export default ImageUpload;
