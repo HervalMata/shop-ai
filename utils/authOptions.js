@@ -14,9 +14,13 @@ export const authOptions = {
     providers: [
         CredentialsProvider({
             async authorize(credentials, req) {
+                const email = credentials?.email?.trim();
+                const password = credentials?.password;
+                if (!email || !password) {
+                    throw new Error("Email e senha são obrigatórios");
+                }
                 await dbConnect();
 
-                const { email, password } = credentials;
                 const user = await User.findOne({ email }).select('+password');
 
                 if (!user?.password) {
@@ -59,6 +63,9 @@ export const authOptions = {
 
         jwt: async ({ token }) => {
             await dbConnect();
+            if (!token.email) {
+                return token;
+            }
             const userByEmail = await User.findOne({ email: token.email });
 
             if (userByEmail) {
@@ -76,8 +83,9 @@ export const authOptions = {
         session: async ({ session, token }) => {
 
             session.user = {
-                ...token.user,
-                role: token.user.role || "user",
+                ...session.user,
+                ...token.user ?? {},
+                role: token.user?.role || "user",
             };
 
             return session;

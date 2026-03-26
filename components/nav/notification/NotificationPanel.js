@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Pusher from "pusher-js";
 import { useRouter } from "next/navigation";
-import { Box, Typography, IconButton, Popper, Pager, List, ListItem, ListItemText, Divider, Badge, Button } from "@mui/material";
+import { Box, Typography, IconButton, Popper, PaPer, List, ListItem, ListItemText, Divider, Badge, Button } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 export default function NotificationPanel() {
     const [open, setOpen] = useState(false);
@@ -13,8 +14,8 @@ export default function NotificationPanel() {
     const router = useRouter();
 
     useEffect(() => {
-        const pusher = new Pusher(process.env.KEY, {
-            cluster: process.env.CLUSTER,
+        const pusher = new Pusher(process.env.PUSHER_KEY, {
+            cluster: process.env.PUSHER_CLUSTER,
             forceTLS: true,
         });
 
@@ -85,7 +86,7 @@ export default function NotificationPanel() {
             });
 
             setNotifications((prev) => 
-                prev.map((n) => { ...n, seen: true }))
+                prev.map((n) => ({ ...n, seen: true }))
             );
             setUnreadCount(0);
         } catch (error) {
@@ -111,7 +112,7 @@ export default function NotificationPanel() {
 
     return (
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            {session?user?.role === "admin" && (
+            {session?.user?.role === "admin" && (
                 <IconButton ref={anchorRef} onClick={toggleOpen}>
                     <Badge
                         badgeContent={unreadCount > 0 ? unreadCount : null}
