@@ -11,6 +11,7 @@ import {
     Menu,
     MenuItem,
     Typography,
+    PersonIcon,
     useMediaQuery, useTheme
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -23,6 +24,10 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import {KeyboardArrowDown} from "@mui/icons-material";
+import { useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
+import CartContent from "../cartContent/CartContent";
+import Notification from "@/components/nav/notification/NotificationPanel";
 
 const Nav = () => {
     const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -30,11 +35,18 @@ const Nav = () => {
     const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
+    const { data: session } = useSession();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery("(max-width: 600px)");
 
+    const cartCount = useSelector((state) => state.cart.items?.length || 0);
+
     const handleAuthIconClick = () => {
-        router.push("/login");
+        if (session && session?.user) {
+            router.push(`/dashboard/${session?.user?.role}`);
+        } else {
+            router.push("/login");
+        }
     }
 
     const toggleMobileDrawer = (open) => (event) => {
@@ -193,7 +205,7 @@ const Nav = () => {
                         }}
                     >
                         <Badge
-                            badgeContent={2}
+                            badgeContent={cartCount}
                             overlap="rectangular"
                             sx={{
                                 "& .MuiBadge-badge": {
@@ -234,10 +246,26 @@ const Nav = () => {
                             }
                         }}
                     >
-                        <LoginIcon fontSize={isSmallScreen ? "small" : "medium"} />
+                        {session?.user ? (
+                            session.user.image ? (
+                                <Avatar
+                                src={session.user.image}
+                                alt="Perfil do usuário"
+                                sx={{
+                                    width: isSmallScreen ? 24 : 32,
+                                    height: isSmallScreen ? 24 : 32,
+                                }}
+                            />  
+                        ) : (
+                            <PersonIcon fontSize={isSmallScreen ? "small" : "medium"} />
+                        ) 
+                    ) : (
+                            <LoginIcon fontSize={isSmallScreen ? "small" : "medium"} />
+                        )}
+                        
                     </IconButton>
 
-                    {/* <Notification /> */}
+                    <Notification />
                 </Box>
             </Box>
 
@@ -298,7 +326,7 @@ const Nav = () => {
                     onClick={toggleCartDrawer(false)}
                     onKeyDown={toggleCartDrawer(false)}
                 >
-                    {/* <CartContent /> */}
+                    <CartContent />
                 </Box>
             </Drawer>
         </Box>

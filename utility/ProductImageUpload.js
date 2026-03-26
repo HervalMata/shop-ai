@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React , { useId } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { AddPhotoAlternate } from "@mui/icons-material";
 
 const ImageUpload = ({ imagePreview, setImagePreview, setImageFile, label = "Image" }) => {
+    const inputId = useId();
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -15,7 +16,7 @@ const ImageUpload = ({ imagePreview, setImagePreview, setImageFile, label = "Ima
         }
 
         if (file.size > 5 * 1024 * 1024) {
-            alert('A imagem deve ter pelo menos 5MB');
+            alert('A imagem deve ter no máximo 5MB');
             return;
         }
 
@@ -36,11 +37,11 @@ const ImageUpload = ({ imagePreview, setImagePreview, setImageFile, label = "Ima
                 <input 
                     accept="image/*"
                     style={{ display: "none" }}
-                    id="image-upload-input"
+                    id={inputId}
                     type="file"
                     onChange={handleImageChange}
                 />
-                <label htmlFor="image-upload-input">
+                <label htmlFor={inputId}>
                     <IconButton component="span" sx={{ p: 0, width: "100%" }}>
                         <Box sx={{
                             width: '100%',
@@ -75,7 +76,7 @@ const ImageUpload = ({ imagePreview, setImagePreview, setImageFile, label = "Ima
                                 }}>
                                     <AddPhotoAlternate sx={{ fontSize: 50, color: 'red' }}/>
                                     <Typography variant='body2' sx={{ mt: 1 }}>
-                                        Clicque aqui para carregar uma imagem
+                                        Clique aqui para carregar uma imagem
                                     </Typography>
                                 </Box>
                             )}

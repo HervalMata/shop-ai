@@ -1,7 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
-import user from "@/models/user";
+import User from "@/models/user";
 
 import bcrypt from 'bcrypt';
 import dbConnect from "./dbConnect";
@@ -17,7 +17,7 @@ export const authOptions = {
                 await dbConnect();
 
                 const { email, password } = credentials;
-                const user = await User.findOne({ email });
+                const user = await User.findOne({ email }).select('+password');
 
                 if (!user?.password) {
                     throw new Error("Por favor entre via metodo do usuário para cadastrar-se");
@@ -58,6 +58,7 @@ export const authOptions = {
         },
 
         jwt: async ({ token }) => {
+            await dbConnect();
             const userByEmail = await User.findOne({ email: token.email });
 
             if (userByEmail) {
@@ -73,7 +74,6 @@ export const authOptions = {
         },
 
         session: async ({ session, token }) => {
-            console.log("Sessão: ", session);
 
             session.user = {
                 ...token.user,
@@ -84,7 +84,7 @@ export const authOptions = {
         },
     },
 
-    secret: process.env.NEXAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET,
 
     pages: {
         signIn: "/login",
