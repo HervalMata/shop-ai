@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CartContainer, CartTitle, EmptyCart } from "./cartStyles";
+import { CartContainer, CartTitle, EmptyCart, ActionButton } from "./cartStyles";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Typography from "@mui/material/Typography";
@@ -33,8 +33,7 @@ const CartContent = () => {
 
     const calculateTotal = () => {
         return cartItems
-            .reduce((total, item) => total + item.totalPrice, 0)
-            .toLocalString("pt-BR");
+            .reduce((total, item) => total + item.totalPrice, 0);
     }
 
     if (loading) {

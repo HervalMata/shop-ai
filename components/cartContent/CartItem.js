@@ -3,8 +3,8 @@
 import { CartItemWrapper, ProductImage, ProductInfo, ProductName, ProductQuantity, RemoveButton } from "./cartItemStyles";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import DeleteIcon from "@mui/material/Delete";
-import { motion } from "frame-motion";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { motion } from "framer-motion";
 
 const CartItem = ({ item, onRemove, isAnimating }) => {
     return (
@@ -21,13 +21,13 @@ const CartItem = ({ item, onRemove, isAnimating }) => {
                     <ProductName variant="body1">{item.name}</ProductName>
 
                     {item.size && (
-                        <Typography variant="body2" color="trxtSecondary" fontWeight={900}>
+                        <Typography variant="body2" color="textSecondary" fontWeight={900}>
                             Tamanho: {item.size}
                         </Typography>
                     )}
 
                     {item.options && (
-                        <Typography variant="body2" color="trxtSecondary" fontWeight={900}>
+                        <Typography variant="body2" color="textSecondary" fontWeight={900}>
                             Opções: {item.options}
                         </Typography>
                     )}
@@ -37,7 +37,7 @@ const CartItem = ({ item, onRemove, isAnimating }) => {
                     </ProductQuantity>
 
                     <Typography variant="body2" color="primary" fontWeight={600}>
-                        R$ {item.totalPrice.toLocalString("pt-BR")}
+                        R$ {item.totalPrice.toLocaleString("pt-BR")}
                     </Typography>
                 </ProductInfo>
 

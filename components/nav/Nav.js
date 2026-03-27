@@ -11,9 +11,9 @@ import {
     Menu,
     MenuItem,
     Typography,
-    PersonIcon,
     useMediaQuery, useTheme
 } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
